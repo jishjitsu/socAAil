@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
-import Home from './pages/home'
+import Landing from './pages/Landing'
 import About from './pages/About'
 import FAQ from './pages/FAQ'
 import LoginForm from './pages/Login'
@@ -48,7 +48,7 @@ function AppContent() {
         <div className={`flex-1 ${isAuthenticated ? 'ml-16' : ''}`}>
           <Routes>
             <Route path="/pricing" element={<Pricing />} />
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Landing />} />
             <Route path="/about" element={<About />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/login" element={<LoginForm onLogin={handleLogin} />} />
