@@ -10,4 +10,14 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src'), // Set the alias to point to the src directory
     },
   },
+  build: {
+    rollupOptions: {
+      external: ['axios'], // Externalize axios
+      output: {
+        globals: {
+          axios: 'axios', // Define global variable for axios
+        },
+      },
+    },
+  },
 });
