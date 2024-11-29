@@ -3,25 +3,44 @@ import React, { useState, useEffect, useRef } from 'react';
 const Chatbot = () => {
     const [messages, setMessages] = useState([]);
     const [input, setInput] = useState('');
-    const messagesEndRef = useRef(null); // Create a ref for the message end
+    const messagesEndRef = useRef(null);
 
-    const handleSendMessage = (e) => {
+    const handleSendMessage = async (e) => {
         e.preventDefault();
         if (input.trim()) {
-            setMessages([...messages, { text: input, sender: 'user' }]);
+            const newMessage = { text: input, sender: 'user' };
+            setMessages([...messages, newMessage]);
             setInput('');
-            // Simulate a response from the chatbot
-            setTimeout(() => {
+
+            try {
+                // Send message to backend
+                const response = await fetch('http://localhost:5000/dialogflow-webhook', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ queryText: input }),
+                });
+                const data = await response.json();
+                
+                if (data.fulfillmentText) {
+                    // Update messages with bot's response
+                    setMessages((prevMessages) => [
+                        ...prevMessages,
+                        { text: data.fulfillmentText, sender: 'bot' },
+                    ]);
+                }
+            } catch (error) {
+                console.error('Error sending message to backend:', error);
                 setMessages((prevMessages) => [
                     ...prevMessages,
-                    { text: "This is a response from the bot.", sender: 'bot' },
+                    { text: "Error communicating with server.", sender: 'bot' },
                 ]);
-            }, 1000);
+            }
         }
     };
 
     useEffect(() => {
-        // Scroll to the bottom of the messages whenever they change
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages]);
 
@@ -40,8 +59,7 @@ const Chatbot = () => {
                         </div>
                     ))
                 )}
-                {/* Empty div for scrolling */}
-                <div ref={messagesEndRef} /> {/* This div allows scrolling to the bottom */}
+                <div ref={messagesEndRef} />
             </div>
 
             {/* Input Area */}
