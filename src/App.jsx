@@ -21,28 +21,38 @@ function PrivateRoute({ children, isAuthenticated }) {
 function AppContent() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
 
+  // Check localStorage for the token on component mount
   useEffect(() => {
     const token = localStorage.getItem('token')
+
+    console.log("Token in localStorage on mount:", token) // Debugging token
+
     if (token) {
       setIsAuthenticated(true)
+    } else {
+      console.log("No token found, user is not authenticated.")
     }
-  }, [])
+  }, [])  // Empty dependency array means this will run once on mount
 
   const handleLogin = (token) => {
+    console.log("User logging in with token:", token) // Debugging login
     localStorage.setItem('token', token)
     setIsAuthenticated(true)
   }
 
   const handleLogout = () => {
+    console.log("Logging out...") // Debugging logout
     localStorage.removeItem('token')
     setIsAuthenticated(false)
   }
 
   return (
     <div className="flex flex-col h-screen">
-      <Navbar />
+      {/* Only render Navbar when authenticated */}
+      {!isAuthenticated && <Navbar />}
 
       <div className="flex flex-1">
+        {/* Only render Sidebar when authenticated */}
         {isAuthenticated && <Sidebar handleLogout={handleLogout} />}
 
         <div className={`flex-1 ${isAuthenticated ? 'ml-16' : ''}`}>
@@ -51,7 +61,14 @@ function AppContent() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/faq" element={<FAQ />} />
-            <Route path="/login" element={<LoginForm onLogin={handleLogin} />} />
+
+            {/* Login route */}
+            <Route 
+              path="/login" 
+              element={<LoginForm onLogin={handleLogin} />} 
+            />
+
+            {/* Protected routes */}
             <Route
               path="/dashboard"
               element={
@@ -90,7 +107,6 @@ function AppContent() {
     </div>
   )
 }
-
 
 function App() {
   return (

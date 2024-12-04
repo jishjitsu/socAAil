@@ -7,7 +7,7 @@ const tiers = [
     href: '#',
     priceMonthly: 'Free',
     description: "The perfect plan if you're just getting started with our product.",
-    features: ['7 DAYS', 'Archived Trends', 'Advanced analytics', '2Limited Chatbot Interaction'],
+    features: ['7 DAYS', 'Archived Trends', 'Advanced analytics', 'Limited Chatbot Interaction'],
     featured: false,
   },
   {
