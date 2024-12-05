@@ -15,7 +15,7 @@ const tiers = [
     id: 'tier-enterprise',
     href: '#',
     priceMonthly: '₹199',
-    description: 'Dedicated support and infrastructure for your company.',
+    description: 'Plan for veterans, Leave the results to us.',
     features: [
       'Unlimited Usage',
       'Dynamic Trends',
