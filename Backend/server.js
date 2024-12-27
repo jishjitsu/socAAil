@@ -24,6 +24,7 @@ mongoose.connect(process.env.MONGODB_URI)
 
 // User Schema
 const userSchema = new mongoose.Schema({
+  userId: { type: String, unique: true, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
 });
@@ -41,7 +42,12 @@ app.post('/register', async (req, res) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = new User({ email, password: hashedPassword });
+    const newUser = new User({
+      userId: new mongoose.Types.ObjectId().toString(), // Add unique userId
+      email,
+      password: hashedPassword,
+    });
+
     await newUser.save();
     res.status(201).json({ message: 'User registered successfully' });
   } catch (error) {
