@@ -61,8 +61,8 @@ export default function Sidebar({ handleLogout }) {
                         <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6m0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5"/>
                       </svg><h3 className="text-white ml-2">Chat Assistant</h3></div>}
           </button>
-          <button onClick={handleLogoutRedirect} className="text-white flex items-center py-3 px-4 hover:bg-black rounded-md transition duration-200">
-            {isMini ? <FiLogOut /> : <h3 className="text-white ml-2">Logout</h3>}
+          <button onClick={handleLogoutRedirect} className="text-white flex items-center py-3 px-4 hover:bg-red rounded-md transition duration-200">
+            {isMini ? <FiLogOut /> : <div className="flex items-center justify-center"><FiLogOut /> <h3 className="text-white ml-2">Logout</h3></div>}
           </button>
         </div>
       </div>
