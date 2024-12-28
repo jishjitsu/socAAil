@@ -1,11 +1,10 @@
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import { BrowserRouter } from 'react-router-dom';
 import './App.css'; // Import your global styles
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-        <BrowserRouter>
+        // <BrowserRouter>
             <App />
-        </BrowserRouter>
+        // </BrowserRouter>
 );
