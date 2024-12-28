@@ -33,7 +33,7 @@ const processWithGemini = async (response) => {
           "Content-Type": "application/json",
         },
         params: {
-          key: "AIzaSyCKf5X_tsPRZhmJla81Vc0dzTCir76rTf8",
+          key: process.env.GEMINI_API_KEY,
         },
       }
     );
