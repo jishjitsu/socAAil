@@ -86,7 +86,7 @@ export const processQuery = async (req, res) => {
 export const getChatHistory = async (req, res) => {
   try {
     const chatHistory = await Chat.find({ userId: req.user.userId }).sort({
-      timestamp: -1,
+      timestamp: 1,
     });
     res.json(chatHistory);
   } catch (error) {

@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "description": "",
+  "type": "module" ,
   "dependencies": {
     "@google-cloud/dialogflow": "^6.10.0",
     "axios": "^1.7.9",
