@@ -1,5 +1,4 @@
 /* eslint-disable no-undef */
-// controllers/authController.js
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { User } from "../models/User.js";
