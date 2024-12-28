@@ -1,4 +1,3 @@
-import React from "react"
 import { Link } from "react-router-dom"
 
 export default function About() {
@@ -50,7 +49,7 @@ export default function About() {
           <div className="bg-white bg-opacity-60 rounded-lg shadow-sm p-6">
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">Our Team</h2>
             <p className="text-gray-600">
-              SOCaiL is built by a passionate team of AI experts, social media strategists, and software engineers. We're dedicated to pushing the boundaries of what's possible in content creation and social media management.
+              SOCaiL is built by a passionate team of AI experts, social media strategists, and software engineers. We are dedicated to pushing the boundaries of what is possible in content creation and social media management.
             </p>
           </div>
         </div>

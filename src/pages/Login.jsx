@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -22,7 +24,7 @@ function LoginForm({ onLogin }) {
 
         try {
             const response = await axios.post(
-                `http://localhost:5000/${isRegistering ? 'register' : 'login'}`,
+                `http://localhost:5000/auth/${isRegistering ? 'register' : 'login'}`,
                 {
                     email,
                     password,
@@ -175,7 +177,7 @@ function LoginForm({ onLogin }) {
                                 </span>
                             ) : (
                                 <span>
-                                    Don't have an account?{' '}
+                                    Do not have an account?{' '}
                                     <button
                                         onClick={() => setIsRegistering(true)}
                                         className="text-indigo-600 hover:underline"
