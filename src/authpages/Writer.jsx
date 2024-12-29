@@ -5,6 +5,7 @@ function ContentWriterPage() {
   const [hashtags, setHashtags] = useState([]); // Holds the generated hashtags
   const [prompt, setPrompt] = useState(""); // Holds the main input prompt
   const [askAIPrompt, setAskAIPrompt] = useState("Generate more examples"); // Default state for Ask AI dropdown
+  const [loading, setLoading] = useState(false); // Tracks loading state
 
   const askAIOptions = [
     "Make it funnier",
@@ -17,9 +18,10 @@ function ContentWriterPage() {
 
   // Function to send the initial input and fetch content
   const handleSubmit = async () => {
+    setLoading(true); // Start loading
     try {
       console.log("Submitting prompt:", prompt); // Debug log
-      const response = await fetch("http://192.168.1.6:5001/generate-content", {
+      const response = await fetch("http://192.168.1.38:5001/generate-content", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ prompt }),
@@ -27,7 +29,7 @@ function ContentWriterPage() {
       const data = await response.json();
       console.log("Received data:", data); // Debug log
       setContent(data.content); // Update the editor with the generated content
-      const hashtagsResponse = await fetch("http://192.168.1.6:5001/generate-hashtags", {
+      const hashtagsResponse = await fetch("http://192.168.1.38:5001/generate-hashtags", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ prompt }),
@@ -36,15 +38,18 @@ function ContentWriterPage() {
       setHashtags(hashtagsData.hashtags || []); // Update the generated tags
     } catch (error) {
       console.error("Error fetching generated content:", error);
+    } finally {
+      setLoading(false); // Stop loading
     }
   };
 
   // Function to modify the content based on "Ask AI"
   const handleAskAI = async () => {
+    setLoading(true); // Start loading
     try {
       console.log("Ask AI prompt:", askAIPrompt); // Debug log
       console.log("Current content:", content); // Debug log
-      const response = await fetch("http://192.168.1.6:5001/askai", {
+      const response = await fetch("http://192.168.1.38:5001/askai", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ 
@@ -57,6 +62,8 @@ function ContentWriterPage() {
       setContent(data.content); // Update the editor with modified content
     } catch (error) {
       console.error("Error modifying content:", error);
+    } finally {
+      setLoading(false); // Stop loading
     }
   };
 
@@ -84,10 +91,18 @@ function ContentWriterPage() {
             <button
               onClick={handleSubmit}
               className="ml-4 bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600"
+              disabled={loading} // Disable button when loading
             >
-              Submit
+              {loading ? "Loading..." : "Submit"}
             </button>
           </div>
+
+          {/* Loading Animation */}
+          {loading && (
+            <div className="w-full text-center my-4">
+              <div className="spinner border-t-4 border-indigo-500 border-solid rounded-full w-8 h-8 animate-spin"></div>
+            </div>
+          )}
 
           <textarea
             className="w-full h-80 border border-gray-300 rounded p-4 focus:outline-none focus:ring-2 focus:ring-indigo-500"
@@ -101,11 +116,11 @@ function ContentWriterPage() {
         <aside className="w-1/4 bg-gray-50 shadow-lg m-4 rounded-lg p-6">
           {/* Floating Menu */}
           <div className="mb-6">
-            <div className="w-full flex items-center text-white space-x-2  ">
+            <div className="w-full flex items-center text-white space-x-2">
               <select
                 value={askAIPrompt}
                 onChange={(e) => setAskAIPrompt(e.target.value)}
-                className="w-54 px-6 py-4 my-6 rounded text-black border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="w-54 px-6 py-4 my-6 rounded text-black border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               >
                 {askAIOptions.map((option, index) => (
                   <option key={index} value={option}>
@@ -116,8 +131,9 @@ function ContentWriterPage() {
               <button
                 onClick={handleAskAI}
                 className="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600"
+                disabled={loading} // Disable button when loading
               >
-                Ask AI
+                {loading ? "Loading..." : "Ask AI"}
               </button>
             </div>
           </div>
