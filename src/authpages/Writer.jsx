@@ -9,10 +9,9 @@ function ContentWriterPage() {
   const askAIOptions = [
     "Make it funnier",
     "Make it sound serious",
-    "Make it concise and shareable",
+    "Make it concise",
     "Add a call to action",
     "Make it more engaging",
-    "Phrase it for a younger audience",
     "Use slang and lingo"
   ];
 
@@ -80,18 +79,18 @@ function ContentWriterPage() {
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
               placeholder="Enter your trend here..."
-              className="flex-grow border border-gray-300 rounded p-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="flex-grow border border-gray-300 rounded p-4 my-5 focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
             <button
               onClick={handleSubmit}
-              className="ml-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+              className="ml-4 bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600"
             >
               Submit
             </button>
           </div>
 
           <textarea
-            className="w-full h-64 border border-gray-300 rounded p-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full h-80 border border-gray-300 rounded p-4 focus:outline-none focus:ring-2 focus:ring-indigo-500"
             value={content}
             readOnly
             placeholder="Your content will appear here..."
@@ -102,11 +101,11 @@ function ContentWriterPage() {
         <aside className="w-1/4 bg-gray-50 shadow-lg m-4 rounded-lg p-6">
           {/* Floating Menu */}
           <div className="mb-6">
-            <div className="w-64 bg-purple-700 text-white rounded-lg shadow-lg p-4">
+            <div className="w-full flex items-center text-white space-x-2  ">
               <select
                 value={askAIPrompt}
                 onChange={(e) => setAskAIPrompt(e.target.value)}
-                className="w-full px-4 py-2 rounded text-black"
+                className="w-54 px-6 py-4 my-6 rounded text-black border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
               >
                 {askAIOptions.map((option, index) => (
                   <option key={index} value={option}>
@@ -116,7 +115,7 @@ function ContentWriterPage() {
               </select>
               <button
                 onClick={handleAskAI}
-                className="mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                className="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600"
               >
                 Ask AI
               </button>
@@ -130,7 +129,7 @@ function ContentWriterPage() {
               {hashtags.map((tag, index) => (
                 <span
                   key={index}
-                  className="bg-blue-200 text-blue-700 px-3 py-1 rounded-full"
+                  className="bg-indigo-200 text-indigo-700 px-3 py-1 rounded-full"
                 >
                   {tag}
                 </span>
