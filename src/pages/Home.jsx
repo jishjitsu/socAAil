@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 
@@ -10,6 +12,8 @@ const AnimatedText = ({ children, className = "" }) => {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
+        } else {
+          setIsVisible(false);
         }
       },
       {
@@ -34,7 +38,7 @@ const AnimatedText = ({ children, className = "" }) => {
       ref={elementRef}
       className={`transform transition-all ease-in-out duration-1000 ${
         isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-      } ${className}`}
+      }`}
     >
       {children}
     </div>
@@ -135,31 +139,36 @@ const features = [
 
 export default function Home() {
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
-  const cursorRef = useRef(null);
+  const throttleRef = useRef(null);
 
-  // Track the cursor position with smooth animation
+  // Throttled cursor position tracking
   useEffect(() => {
     const handleMouseMove = (event) => {
-      setCursorPosition({ x: event.clientX, y: event.clientY });
+      if (!throttleRef.current) {
+        throttleRef.current = setTimeout(() => {
+          setCursorPosition({ x: event.clientX, y: event.clientY });
+          throttleRef.current = null;
+        }, 16); // Approximately 60fps
+      }
     };
 
     window.addEventListener("mousemove", handleMouseMove);
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
+      if (throttleRef.current) {
+        clearTimeout(throttleRef.current);
+      }
     };
   }, []);
-
   return (
-    <div className="min-h-screen bg-white relative overflow-hidden">
-      {/* Cursor follower */}
-      <div
-        ref={cursorRef}
-        className="pointer-events-none fixed inset-0 z-30 transition-opacity duration-300"
-        style={{
-          background: `radial-gradient(600px at ${cursorPosition.x}px ${cursorPosition.y}px, rgba(139, 92, 246, 0.19), transparent 80%)`,
-        }}
-      />
+    <div className="min-h-screen bg-gradient-to-b from-white to-purple-50 relative overflow-hidden">
+      {/* Subtle background elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute left-[10%] top-[5%] h-[300px] w-[300px] rounded-full bg-purple-100 mix-blend-multiply filter blur-3xl opacity-70" />
+        <div className="absolute right-[15%] top-[15%] h-[250px] w-[250px] rounded-full bg-pink-100 mix-blend-multiply filter blur-3xl opacity-70" />
+        <div className="absolute left-[20%] bottom-[10%] h-[350px] w-[350px] rounded-full bg-blue-100 mix-blend-multiply filter blur-3xl opacity-70" />
+      </div>
 
       {/* Main content */}
       <div className="relative z-10">
@@ -185,9 +194,32 @@ export default function Home() {
           </AnimatedText>
         </header>
 
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {["Trend Compiler", "Content Writer", "Chatbot"].map(
+              (feature, index) => (
+                <AnimatedText key={index}>
+                  <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2 text-center">
+                      {feature}
+                    </h3>
+                    <p className="text-gray-600 text-center">
+                      {index === 0
+                        ? "Easily compile and analyze the latest social media trends tailored to your niche."
+                        : index === 1
+                        ? "Craft quality content with , ensuring every post resonates with your audience."
+                        : "Engage your followers with our smart chatbot designed for personalized interaction."}
+                    </p>
+                  </div>
+                </AnimatedText>
+              )
+            )}
+          </div>
+        </section>
+
         {/* Features section */}
         <section className="relative py-24 sm:py-16">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl px-6 lg:px-">
             <div className="mx-auto max-w-2xl lg:text-center">
               <AnimatedText>
                 <h3 className="text-base font-semibold leading-7 text-indigo-600">
@@ -225,6 +257,21 @@ export default function Home() {
               </dl>
             </div>
           </div>
+        </section>
+        <section className="py-16 text-center">
+          <AnimatedText>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Join SOCaiL today and take your content to the next level.
+            </h2>
+          </AnimatedText>
+          <AnimatedText>
+            <Link
+              to="/login"
+              className="bg-indigo-500 text-white px-6 py-2 rounded-md hover:bg-indigo-600 transition-colors"
+            >
+              Sign Up
+            </Link>
+          </AnimatedText>
         </section>
       </div>
     </div>
