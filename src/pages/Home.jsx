@@ -49,7 +49,7 @@ const features = [
   {
     name: "Increase in Views",
     description:
-      "Our tool helps you amplify your audience reach by analyzing trending topics and offering actionable recommendations to create engaging content.",
+      "Our tool helps you amplify your audience reach by using AI to analyze trends to help you create engaging content.",
     icon: () => (
       <svg
         xmlns="http://www.w3.org/2000/svg"
