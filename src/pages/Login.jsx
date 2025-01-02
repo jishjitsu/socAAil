@@ -80,13 +80,13 @@ function LoginForm({ onLogin }) {
 
       <div className="relative z-10 flex items-center justify-center min-h-screen">
         <div
-          className={`max-w-md w-full bg-white rounded-lg border-2 border-indigo-500/35 hover:shadow-indigo-500/50 hover:shadow-lg transition-shadow duration-300 ${
+          className={`max-w-md w-full bg-white rounded-lg border-2 border-purple-500/35 hover:shadow-purple-500/50 hover:shadow-lg transition-shadow duration-300 ${
             isMounted ? "animate-rise" : ""
           }`}
         >
           <div className="p-6">
             <div className="flex items-center justify-center mb-8">
-              <h1 className="text-2xl font-bold text-indigo-600">SOCaiL</h1>
+              <h1 className="text-2xl font-bold text-purple-600">SOCaiL</h1>
             </div>
 
             <h2 className="text-2xl font-semibold text-gray-800 mb-2">
@@ -111,7 +111,7 @@ function LoginForm({ onLogin }) {
                 <input
                   type="email"
                   id="email"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-600"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -128,7 +128,7 @@ function LoginForm({ onLogin }) {
                 <input
                   type="password"
                   id="password"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-600"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
@@ -146,7 +146,7 @@ function LoginForm({ onLogin }) {
                   <input
                     type="password"
                     id="confirmPassword"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-600"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     required
@@ -169,7 +169,7 @@ function LoginForm({ onLogin }) {
 
               <button
                 type="submit"
-                className="w-full bg-indigo-600 text-white font-bold py-2 rounded-md hover:bg-indigo-700 transition duration-300"
+                className="w-full bg-purple-600 text-white font-bold py-2 rounded-md hover:bg-purple-700 transition duration-300"
               >
                 {isRegistering ? "Register" : "Login"}
               </button>
@@ -181,7 +181,7 @@ function LoginForm({ onLogin }) {
                   Already have an account?{" "}
                   <button
                     onClick={() => setIsRegistering(false)}
-                    className="text-indigo-600 hover:underline"
+                    className="text-purple-600 hover:underline"
                   >
                     Login here
                   </button>
@@ -191,7 +191,7 @@ function LoginForm({ onLogin }) {
                   Do not have an account?{" "}
                   <button
                     onClick={() => setIsRegistering(true)}
-                    className="text-indigo-600 hover:underline"
+                    className="text-purple-600 hover:underline"
                   >
                     Register here
                   </button>

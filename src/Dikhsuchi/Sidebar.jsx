@@ -23,7 +23,7 @@ export default function Sidebar({ handleLogout }) {
     <div className="flex">
       {/* Mini Sidebar */}
       <div
-        className={`${isMini ? "w-16" : "w-64"} bg-indigo-600 h-screen fixed top-0 left-0 flex flex-col items-center p-4 transition-all duration-300 z-50`}
+        className={`${isMini ? "w-16" : "w-64"} bg-purple-700 h-screen fixed top-0 left-0 flex flex-col items-center p-4 transition-all duration-300 z-50`}
         onMouseEnter={() => setIsMini(false)}
         onMouseLeave={() => setIsMini(true)}
       >

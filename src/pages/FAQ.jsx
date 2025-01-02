@@ -96,7 +96,7 @@ export default function FAQ() {
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className="bg-white bg-opacity-60 backdrop-blur-sm rounded-lg shadow-sm p-6 border-2 border-indigo-500/35"
+              className="bg-white bg-opacity-60 backdrop-blur-sm rounded-lg shadow-sm p-6 border-2 border-purple-500/35"
             >
               <AnimatedText>
                 <h2 className="text-xl font-semibold text-gray-900 mb-2">
@@ -113,7 +113,7 @@ export default function FAQ() {
         <div className="mt-12 flex justify-center">
           <Link
             to="/"
-            className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
+            className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700"
           >
             Back to Home
           </Link>

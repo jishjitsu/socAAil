@@ -57,7 +57,7 @@ const features = [
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="currentColor"
-        className="h-6 w-6 stroke-indigo-500"
+        className="h-6 w-6 stroke-purple-700"
       >
         <path
           strokeLinecap="round"
@@ -78,7 +78,7 @@ const features = [
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="currentColor"
-        className="h-6 w-6 stroke-indigo-500"
+        className="h-6 w-6 stroke-purple-700"
       >
         <path
           strokeLinecap="round"
@@ -99,7 +99,7 @@ const features = [
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="currentColor"
-        className="h-6 w-6 stroke-indigo-500"
+        className="h-6 w-6 stroke-purple-700"
       >
         <path
           strokeLinecap="round"
@@ -110,9 +110,9 @@ const features = [
     ),
   },
   {
-    name: "Advanced Metrics",
+    name: "Scheduler and Tracker",
     description:
-      "Gain deeper insights into your content performance with advanced analytics, empowering you to optimize your strategy for success.",
+      "Schedule your content accordingly for maximum reach and track your progress, for better productivity.",
     icon: () => (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -120,7 +120,7 @@ const features = [
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="currentColor"
-        className="h-6 w-6 stroke-indigo-500"
+        className="h-6 w-6 stroke-purple-700"
       >
         <path
           strokeLinecap="round"
@@ -179,7 +179,7 @@ export default function Home() {
             </h1>
           </AnimatedText>
           <AnimatedText>
-            <p className="text-xl text-gray-600 mb-8">
+            <p className="text-xl text-gray-800 mb-8">
               Analyze trends, generate content, and optimize your strategy
               effortlessly.
             </p>
@@ -187,7 +187,7 @@ export default function Home() {
           <AnimatedText>
             <Link
               to="/login"
-              className="bg-indigo-500 text-white px-6 py-2 rounded-md hover:bg-indigo-600 transition-colors"
+              className="bg-purple-700 text-white px-6 py-2 rounded-md hover:bg-purple-800 transition-colors"
             >
               Get Started
             </Link>
@@ -203,7 +203,7 @@ export default function Home() {
                     <h3 className="text-lg font-semibold text-gray-900 mb-2 text-center">
                       {feature}
                     </h3>
-                    <p className="text-gray-600 text-center">
+                    <p className="text-gray-800 text-center">
                       {index === 0
                         ? "Easily compile and analyze the latest social media trends tailored to your niche."
                         : index === 1
@@ -222,7 +222,7 @@ export default function Home() {
           <div className="mx-auto max-w-7xl px-6 lg:px-">
             <div className="mx-auto max-w-2xl lg:text-center">
               <AnimatedText>
-                <h3 className="text-base font-semibold leading-7 text-indigo-600">
+                <h3 className="text-base font-semibold leading-7 text-purple-800">
                   Trend Faster
                 </h3>
               </AnimatedText>
@@ -267,7 +267,7 @@ export default function Home() {
           <AnimatedText>
             <Link
               to="/login"
-              className="bg-indigo-500 text-white px-6 py-2 rounded-md hover:bg-indigo-600 transition-colors"
+              className="bg-purple-700 text-white px-6 py-2 rounded-md hover:bg-purple-800 transition-colors"
             >
               Sign Up
             </Link>

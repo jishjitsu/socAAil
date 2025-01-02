@@ -81,13 +81,13 @@ export default function About() {
         <div className="mt-16 flex flex-col items-center justify-center gap-6 sm:flex-row">
           <Link
             to="/"
-            className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-lg font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 shadow-lg"
+            className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-lg font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 shadow-lg"
           >
             Back to Home
           </Link>
           <Link
             to="/contact"
-            className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-lg font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50 shadow-lg"
+            className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-lg font-medium rounded-md text-purple-600 bg-white hover:bg-purple-50 shadow-lg"
           >
             Contact Us
           </Link>

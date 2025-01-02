@@ -98,7 +98,7 @@ const Chatbot = () => {
               <span
                 className={`inline-block px-4 py-2 rounded-lg ${
                   msg.sender === "user"
-                    ? "bg-indigo-500 text-white"
+                    ? "bg-purple-500 text-white"
                     : "bg-gray-300 text-black"
                 }`}
               >
@@ -118,12 +118,12 @@ const Chatbot = () => {
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-indigo-700"
+            className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-purple-700"
             placeholder="Type your message..."
           />
           <button
             type="submit"
-            className="ml-2 px-4 py-2 bg-indigo-500 text-white rounded-lg hover:bg-blue-600"
+            className="ml-2 px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-blue-600"
           >
             Send
           </button>

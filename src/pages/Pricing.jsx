@@ -45,7 +45,7 @@ function Pricing() {
         />
       </div>
       <div className="mx-auto max-w-2xl text-center lg:max-w-4xl">
-        <h2 className="text-base font-semibold leading-7 text-indigo-600">Pricing</h2>
+        <h2 className="text-base font-semibold leading-7 text-purple-700">Pricing</h2>
         <p className="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
           The right price for you, whoever you are
         </p>
@@ -70,7 +70,7 @@ function Pricing() {
             <h3
               id={tier.id}
               className={classNames(
-                tier.featured ? 'text-indigo-400' : 'text-indigo-600',
+                tier.featured ? 'text-purple-400' : 'text-purple-700',
                 'text-base font-semibold leading-7',
               )}
             >
@@ -104,7 +104,7 @@ function Pricing() {
                 <li key={feature} className="flex gap-x-3">
                   <CheckIcon
                     aria-hidden="true"
-                    className={classNames(tier.featured ? 'text-indigo-400' : 'text-indigo-600', 'h-6 w-5 flex-none')}
+                    className={classNames(tier.featured ? 'text-purple-400' : 'text-purple-600', 'h-6 w-5 flex-none')}
                   />
                   {feature}
                 </li>
@@ -115,8 +115,8 @@ function Pricing() {
               aria-describedby={tier.id}
               className={classNames(
                 tier.featured
-                  ? 'bg-indigo-500 text-white shadow-sm hover:bg-indigo-400 focus-visible:outline-indigo-500'
-                  : 'text-indigo-600 ring-1 ring-inset ring-indigo-200 hover:ring-indigo-300 focus-visible:outline-indigo-600',
+                  ? 'bg-purple-500 text-white shadow-sm hover:bg-purple-400 focus-visible:outline-purple-500'
+                  : 'text-purple-600 ring-1 ring-inset ring-purple-200 hover:ring-purple-300 focus-visible:outline-purple-600',
                 'mt-8 block rounded-md px-3.5 py-2.5 text-center text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 sm:mt-10',
               )}
             >

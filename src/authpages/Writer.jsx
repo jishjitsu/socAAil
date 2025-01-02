@@ -86,11 +86,11 @@ function ContentWriterPage() {
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
               placeholder="Enter your trend here..."
-              className="flex-grow border border-gray-300 rounded p-4 my-5 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="flex-grow border border-gray-300 rounded p-4 my-5 focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
             <button
               onClick={handleSubmit}
-              className="ml-4 bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600"
+              className="ml-4 bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600"
               disabled={loading} // Disable button when loading
             >
               {loading ? "Loading..." : "Submit"}
@@ -100,12 +100,12 @@ function ContentWriterPage() {
           {/* Loading Animation */}
           {loading && (
             <div className="w-full text-center my-4">
-              <div className="spinner border-t-4 border-indigo-500 border-solid rounded-full w-8 h-8 animate-spin"></div>
+              <div className="spinner border-t-4 border-purple-500 border-solid rounded-full w-8 h-8 animate-spin"></div>
             </div>
           )}
 
           <textarea
-            className="w-full h-80 border border-gray-300 rounded p-4 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="w-full h-80 border border-gray-300 rounded p-4 focus:outline-none focus:ring-2 focus:ring-purple-500"
             value={content}
             readOnly
             placeholder="Your content will appear here..."
@@ -120,7 +120,7 @@ function ContentWriterPage() {
               <select
                 value={askAIPrompt}
                 onChange={(e) => setAskAIPrompt(e.target.value)}
-                className="w-54 px-6 py-4 my-6 rounded text-black border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="w-54 px-6 py-4 my-6 rounded text-black border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
               >
                 {askAIOptions.map((option, index) => (
                   <option key={index} value={option}>
@@ -130,7 +130,7 @@ function ContentWriterPage() {
               </select>
               <button
                 onClick={handleAskAI}
-                className="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600"
+                className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600"
                 disabled={loading} // Disable button when loading
               >
                 {loading ? "Loading..." : "Ask AI"}
@@ -145,7 +145,7 @@ function ContentWriterPage() {
               {hashtags.map((tag, index) => (
                 <span
                   key={index}
-                  className="bg-indigo-200 text-indigo-700 px-3 py-1 rounded-full"
+                  className="bg-purple-200 text-purple-700 px-3 py-1 rounded-full"
                 >
                   {tag}
                 </span>
