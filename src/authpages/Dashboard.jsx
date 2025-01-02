@@ -123,7 +123,7 @@ function Dashboard() {
           <div className="flex justify-center space-x-6 mt-4">
             <button
               onClick={() => {}}
-              className="px-6 py-3 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors disabled:opacity-50"
+              className="px-6 py-3 bg-purple-700 text-white rounded-lg hover:bg-purple-800 transition-colors disabled:opacity-50"
               disabled={loading}
             >
               {loading ? 'Updating...' : 'Mark Success'}
@@ -163,7 +163,7 @@ function Dashboard() {
         </div>
         <button
           onClick={() => setShowCalendar(!showCalendar)}
-          className="mt-6 px-6 py-3 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors w-full"
+          className="mt-6 px-6 py-3 bg-purple-700 text-white rounded-lg hover:bg-purple-800 transition-colors w-full"
         >
           {showCalendar ? 'Hide Calendar' : 'View Full Calendar'}
         </button>
