@@ -85,12 +85,6 @@ export default function About() {
           >
             Back to Home
           </Link>
-          <Link
-            to="/contact"
-            className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-lg font-medium rounded-md text-purple-600 bg-white hover:bg-purple-50 shadow-lg"
-          >
-            Contact Us
-          </Link>
         </div>
 
         <div className="mt-24 grid grid-cols-1 gap-16 sm:grid-cols-2">
