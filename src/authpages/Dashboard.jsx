@@ -19,6 +19,22 @@ function Dashboard() {
   ]);
   const [showCalendar, setShowCalendar] = useState(false);
   const [currentMonth, setCurrentMonth] = useState(new Date());
+  const [tip, setTip] = useState("");
+
+  const tips = [
+    "Consistency is key—post regularly to engage your audience.",
+    "Use eye-catching visuals to make your posts stand out.",
+    "Experiment with posting times to discover what works best.",
+    "Engage with your followers by responding to comments and messages.",
+    "Plan your content in advance to maintain quality.",
+    "Leverage trending hashtags to increase visibility.",
+    "Analyze your performance metrics to refine your strategy."
+  ];
+
+  useEffect(() => {
+    const randomTip = tips[Math.floor(Math.random() * tips.length)];
+    setTip(randomTip);
+  }, []);
 
   const suggestUploadTime = () => {
     const day = new Date().getDay();
@@ -70,11 +86,11 @@ function Dashboard() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-purple-50 flex flex-col items-center justify-center relative overflow-hidden">
-      <div className="relative z-10 p-6 lg:p-8 grid grid-cols-1 lg:grid-cols-2 gap-8 text-center">
+      <div className="relative z-10 p-6 lg:p-8 grid grid-cols-1 lg:grid-cols-2 gap-10 text-center">
         {/* Countdown Timer */}
         <div className="bg-card text-card-foreground rounded-lg border shadow-sm p-10 flex flex-col items-center justify-center space-y-6">
           <h1 className="text-4xl font-bold text-purple-700">IT'S FRIDAY</h1>
-          <h2 className="text-2xl font-semibold">Time Left to Post</h2>
+          <h2 className="text-2xl font-semibold">Content Scheduler</h2>
           {countdown ? (
             <div className="grid grid-flow-col gap-8 text-center auto-cols-max">
               <div className="flex flex-col p-4 bg-purple-700 rounded-lg text-white">
@@ -94,15 +110,16 @@ function Dashboard() {
             <p className="text-red-500 font-bold text-xl">The best time has passed for today.</p>
           )}
           <p className="text-lg text-gray-600 mt-2">Best time to post: 3 PM - 6 PM</p>
+          <p className="text-lg text-gray-600 font-bold mt-2">Time Left to Post</p>
         </div>
 
         {/* GIF Streak Tracker */}
-        <div className="bg-card text-card-foreground rounded-lg border shadow-sm p-8 space-y-6 flex flex-col items-center justify-center">
+        <div className="bg-card text-card-foreground rounded-lg border shadow-sm p-10 space-y-8 flex flex-col items-center justify-center">
           <div className="flex items-center justify-center">
             <img
               src={gif}
               alt="Custom Streak GIF"
-              className="h-40 w-40 object-cover"
+              className="h-48 w-48 object-cover"
             />
           </div>
 
@@ -120,10 +137,10 @@ function Dashboard() {
             </div>
           )}
 
-          <div className="flex justify-center space-x-6 mt-4">
+          <div className="flex justify-center space-x-8 mt-4">
             <button
               onClick={() => {}}
-              className="px-6 py-3 bg-purple-700 text-white rounded-lg hover:bg-purple-800 transition-colors disabled:opacity-50"
+              className="px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors disabled:opacity-50"
               disabled={loading}
             >
               {loading ? 'Updating...' : 'Mark Success'}
@@ -143,10 +160,16 @@ function Dashboard() {
         </div>
       </div>
 
+      {/* Tips Section */}
+      <div className="bg-purple-700 text-white rounded-lg shadow-lg p-6 mt-8 mx-6 lg:mx-16 text-center">
+        <h3 className="text-2xl font-semibold mb-4">Today's Tip</h3>
+        <p className="text-lg font-medium">{tip}</p>
+      </div>
+
       {/* Calendar Section */}
-      <div className="bg-white p-6 rounded-lg shadow-sm mt-8 mx-6 lg:mx-12">
-        <h3 className="text-2xl font-semibold text-gray-800 mb-6">Progress Tracker</h3>
-        <div className="flex items-center justify-around space-x-4 overflow-x-auto">
+      <div className="bg-white p-8 rounded-lg shadow-sm mt-12 mx-8 lg:mx-16">
+        <h3 className="text-2xl font-semibold text-gray-800 mb-8">Progress Tracker</h3>
+        <div className="flex items-center justify-around space-x-6 overflow-x-auto">
           {history.slice(-7).map((day, index) => (
             <div
               key={index}
@@ -154,7 +177,7 @@ function Dashboard() {
             >
               <span className="text-gray-700 text-lg">{day.date}</span>
               <div
-                className={`w-8 h-8 flex items-center justify-center rounded-full ${day.success ? 'bg-purple-500' : 'bg-gray-300'}`}
+                className={`w-8 h-8 flex items-center justify-center rounded-full ${day.success ? 'bg-green-500' : 'bg-gray-300'}`}
               >
                 {day.success && <div className="w-4 h-4 bg-white rounded-full"></div>}
               </div>
@@ -163,7 +186,7 @@ function Dashboard() {
         </div>
         <button
           onClick={() => setShowCalendar(!showCalendar)}
-          className="mt-6 px-6 py-3 bg-purple-700 text-white rounded-lg hover:bg-purple-800 transition-colors w-full"
+          className="mt-8 px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors w-full"
         >
           {showCalendar ? 'Hide Calendar' : 'View Full Calendar'}
         </button>
@@ -177,7 +200,7 @@ function Dashboard() {
               tileContent={({ date }) => {
                 const day = history.find((d) => d.date === date.toISOString().split('T')[0]);
                 return day?.success ? (
-                  <div className="w-3 h-3 bg-purple-500 rounded-full mx-auto mt-1"></div>
+                  <div className="w-3 h-3 bg-green-500 rounded-full mx-auto mt-1"></div>
                 ) : null;
               }}
               maxDetail="month"

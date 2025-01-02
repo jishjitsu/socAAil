@@ -10,7 +10,7 @@ const faqs = [
   {
     question: "How does SOCaiL help in trend analysis?",
     answer:
-      "SOCaiL provides real-time analytics on trending topics across various social media platforms, allowing users to identify what content resonates most with their audience.",
+      "SOCaiL provides real-time trends across social media platforms, allowing users to identify what content resonates most with their audience.",
   },
   {
     question: "Can I create content directly within SOCaiL?",
@@ -23,24 +23,19 @@ const faqs = [
       "Yes, SOCaiL features a chatbot that can answer user queries, provide assistance, and suggest content ideas based on the latest trends.",
   },
   {
-    question: "How can SOCaiL improve my social media strategy?",
-    answer:
-      "By analyzing trends and providing insights, SOCaiL helps users understand their audience better, tailor their content to current interests, and improve engagement rates.",
-  },
-  {
     question: "Is SOCaiL suitable for beginners in content creation?",
     answer:
       "SOCaiL is user-friendly and provides valuable resources for both beginners and experienced content creators to enhance their skills.",
   },
   {
-    question: "Can I track my performance on SOCaiL?",
+    question: "Can I track my progress on SOCaiL?",
     answer:
-      "Yes, SOCaiL offers performance tracking features that allow users to monitor their content's effectiveness and make data-driven decisions for future strategies.",
+      "Yes, SOCaiL offers progress tracking features that allow users to monitor their content's consistency and improve productivity.",
   },
   {
     question: "What platforms does SOCaiL support?",
     answer:
-      "SOCaiL is designed to work with various social media platforms, including Instagram, Facebook, Twitter, and TikTok, ensuring comprehensive trend analysis across channels.",
+      "SOCaiL is designed to works primarily with social media platforms like Instagram, Facebook, Twitter, and TikTok, ensuring comprehensive trend analysis across channels.",
   },
   {
     question: "Is SOCaiL a subscription-based service?",

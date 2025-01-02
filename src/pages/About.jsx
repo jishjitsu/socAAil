@@ -87,59 +87,17 @@ export default function About() {
           </Link>
         </div>
 
-        <div className="mt-24 grid grid-cols-1 gap-16 sm:grid-cols-2">
+        <div className="mt-24 flex justify-center">
           <AnimatedText>
             <div className="bg-white bg-opacity-80 rounded-lg shadow-lg p-8">
-              <h2 className="text-3xl font-semibold text-gray-900 mb-6">
+              <h2 className="flex justify-center text-3xl font-semibold text-gray-900 mb-6">
                 Our Vision
               </h2>
-              <p className="text-lg text-gray-700 leading-8">
-                At SOCaiL, we envision a world where creators can focus entirely
+              <p className=" text-lg text-gray-700 leading-8">
+                SOCaiL is for a world where creators can focus entirely
                 on creativity while advanced AI seamlessly handles the technical
-                challenges of trend analysis and content optimization. Our goal
-                is to empower creators to achieve their highest potential.
+                challenges of trend analysis and content optimization.
               </p>
-            </div>
-          </AnimatedText>
-          <AnimatedText>
-            <div className="bg-white bg-opacity-80 rounded-lg shadow-lg p-8">
-              <h2 className="text-3xl font-semibold text-gray-900 mb-6">
-                Our Team
-              </h2>
-              <p className="text-lg text-gray-700 leading-8">
-                SOCaiL is built by a dedicated team of AI researchers, social
-                media strategists, and software engineers. We are united by our
-                passion to redefine how creators interact with their audience
-                through smarter, data-driven solutions.
-              </p>
-            </div>
-          </AnimatedText>
-        </div>
-
-        <div className="mt-24">
-          <AnimatedText>
-            <div className="bg-white bg-opacity-80 rounded-lg shadow-lg p-10">
-              <h2 className="text-3xl font-semibold text-gray-900 mb-8">
-                Why Choose SOCaiL?
-              </h2>
-              <ul className="list-disc list-inside space-y-4 text-lg text-gray-700 leading-8">
-                <li>
-                  Trend-Driven Insights: Stay updated with the latest
-                  industry trends to maximize engagement.
-                </li>
-                <li>
-                  Effortless Content Creation: Generate impactful content
-                  using AI-powered recommendations.
-                </li>
-                <li>
-                  Personalized Strategies: Tailored solutions to fit your
-                  unique style and audience.
-                </li>
-                <li>
-                  Seamless Integration: Tools that work across all your
-                  social media platforms effortlessly.
-                </li>
-              </ul>
             </div>
           </AnimatedText>
         </div>
