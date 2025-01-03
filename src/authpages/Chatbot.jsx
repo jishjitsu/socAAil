@@ -6,7 +6,6 @@ const Chatbot = () => {
   const [input, setInput] = useState("");
   const messagesEndRef = useRef(null);
 
-  // Fetch chat history on component mount
   useEffect(() => {
     const fetchChatHistory = async () => {
       try {
@@ -18,10 +17,12 @@ const Chatbot = () => {
           withCredentials: true,
         });
 
-        const chatHistory = response.data.map((chat) => [
-          { text: chat.query, sender: "user" },
-          { text: chat.response, sender: "bot" },
-        ]).flat(); // Flatten the array to merge all user and bot messages
+        const chatHistory = response.data
+          .map((chat) => [
+            { text: chat.query, sender: "user" },
+            { text: chat.response, sender: "bot" },
+          ])
+          .flat();
 
         setMessages(chatHistory);
       } catch (error) {
@@ -91,12 +92,12 @@ const Chatbot = () => {
           messages.map((msg, index) => (
             <div
               key={index}
-              className={`my-2 ${
-                msg.sender === "user" ? "text-right" : "text-left"
-              }`}
+              className={`flex ${
+                msg.sender === "user" ? "justify-end" : "justify-start"
+              } my-2`}
             >
               <span
-                className={`inline-block px-4 py-2 rounded-lg ${
+                className={`inline-block px-4 py-2 rounded-lg max-w-[70%] ${
                   msg.sender === "user"
                     ? "bg-purple-500 text-white"
                     : "bg-gray-300 text-black"
@@ -107,7 +108,6 @@ const Chatbot = () => {
             </div>
           ))
         )}
-        {/* Dummy div to ensure proper scrolling */}
         <div ref={messagesEndRef} />
       </div>
 

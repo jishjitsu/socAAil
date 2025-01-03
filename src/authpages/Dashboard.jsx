@@ -1,14 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import gif from '../assets/okok-unscreen.gif';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
+import React, { useState, useEffect } from "react";
+import gif from "../assets/okok-unscreen.gif";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
 
 function Dashboard() {
-  const [progress, setProgress] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [progress, setProgress] = useState({
+    currentStreak: 0,
+    highestStreak: 0,
+  });
   const [uploadSuggestion, setUploadSuggestion] = useState("");
-  const [countdown, setCountdown] = useState({ hours: 0, minutes: 0, seconds: 0 });
+  const [countdown, setCountdown] = useState({
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
   const [history, setHistory] = useState([
     { date: "2024-12-29", success: true },
     { date: "2024-12-30", success: false },
@@ -28,7 +33,7 @@ function Dashboard() {
     "Engage with your followers by responding to comments and messages.",
     "Plan your content in advance to maintain quality.",
     "Leverage trending hashtags to increase visibility.",
-    "Analyze your performance metrics to refine your strategy."
+    "Analyze your performance metrics to refine your strategy.",
   ];
 
   useEffect(() => {
@@ -52,7 +57,13 @@ function Dashboard() {
     const now = new Date();
     const bestEndTime = new Date();
     const timeSlots = [
-      [9, 12], [11, 14], [10, 13], [12, 15], [13, 16], [15, 18], [10, 12]
+      [9, 12],
+      [11, 14],
+      [10, 13],
+      [12, 15],
+      [13, 16],
+      [15, 18],
+      [10, 12],
     ];
     const [_, endHour] = timeSlots[day];
     bestEndTime.setHours(endHour, 0, 0, 0);
@@ -74,6 +85,28 @@ function Dashboard() {
     return () => clearInterval(interval);
   }, []);
 
+  const markSuccess = () => {
+    const today = new Date().toISOString().split("T")[0];
+    if (!history.find((entry) => entry.date === today)) {
+      // Update history and streak correctly
+      const newHistory = [...history, { date: today, success: true }];
+      setHistory(newHistory);
+
+      // Increment current streak
+      setProgress((prev) => {
+        const newCurrentStreak = prev.currentStreak + 1;
+        return {
+          currentStreak: newCurrentStreak,
+          highestStreak: Math.max(newCurrentStreak, prev.highestStreak),
+        };
+      });
+    }
+  };
+
+  const resetStreak = () => {
+    setProgress({ currentStreak: 0, highestStreak: progress.highestStreak });
+  };
+
   const onMonthChange = (date) => {
     setCurrentMonth(date);
   };
@@ -89,28 +122,36 @@ function Dashboard() {
       <div className="relative z-10 p-6 lg:p-8 grid grid-cols-1 lg:grid-cols-2 gap-10 text-center">
         {/* Countdown Timer */}
         <div className="bg-card text-card-foreground rounded-lg border shadow-sm p-10 flex flex-col items-center justify-center space-y-6">
-          <h1 className="text-4xl font-bold text-purple-700">IT'S FRIDAY</h1>
-          <h2 className="text-2xl font-semibold">Content Scheduler</h2>
+          <h1 className="text-4xl font-bold text-purple-700">
+            Optimal Posting Time
+          </h1>
           {countdown ? (
             <div className="grid grid-flow-col gap-8 text-center auto-cols-max">
               <div className="flex flex-col p-4 bg-purple-700 rounded-lg text-white">
-                <span className="countdown font-mono text-7xl font-bold">{countdown.hours}</span>
+                <span className="countdown font-mono text-7xl font-bold">
+                  {countdown.hours}
+                </span>
                 <span className="text-xl">hours</span>
               </div>
               <div className="flex flex-col p-4 bg-purple-700 rounded-lg text-white">
-                <span className="countdown font-mono text-7xl font-bold">{countdown.minutes}</span>
+                <span className="countdown font-mono text-7xl font-bold">
+                  {countdown.minutes}
+                </span>
                 <span className="text-xl">minutes</span>
               </div>
               <div className="flex flex-col p-4 bg-purple-700 rounded-lg text-white">
-                <span className="countdown font-mono text-7xl font-bold">{countdown.seconds}</span>
+                <span className="countdown font-mono text-7xl font-bold">
+                  {countdown.seconds}
+                </span>
                 <span className="text-xl">seconds</span>
               </div>
             </div>
           ) : (
-            <p className="text-red-500 font-bold text-xl">The best time has passed for today.</p>
+            <p className="text-red-500 font-bold text-xl">
+              The best time has passed for today.
+            </p>
           )}
-          <p className="text-lg text-gray-600 mt-2">Best time to post: 3 PM - 6 PM</p>
-          <p className="text-lg text-gray-600 font-bold mt-2">Time Left to Post</p>
+          <p className="text-lg text-gray-600 mt-2">{uploadSuggestion}</p>
         </div>
 
         {/* GIF Streak Tracker */}
@@ -122,38 +163,24 @@ function Dashboard() {
               className="h-48 w-48 object-cover"
             />
           </div>
-
-          {loading && !progress ? (
-            <p className="text-muted-foreground text-lg">Loading...</p>
-          ) : (
-            <p className="text-muted-foreground text-lg">
-              Current: {progress?.currentStreak || 0} | Highest: {progress?.highestStreak || 0}
-            </p>
-          )}
-
-          {error && (
-            <div className="text-red-500 text-lg">
-              {error}
-            </div>
-          )}
-
+          <p className="text-muted-foreground text-lg">
+            Current: {progress.currentStreak} | Highest:{" "}
+            {progress.highestStreak}
+          </p>
           <div className="flex justify-center space-x-8 mt-4">
             <button
-              onClick={() => {}}
-              className="px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors disabled:opacity-50"
-              disabled={loading}
+              onClick={markSuccess}
+              className="px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"
             >
-              {loading ? 'Updating...' : 'Mark Success'}
+              Mark Success
             </button>
             <button
-              onClick={() => {}}
-              className="px-6 py-3 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors disabled:opacity-50"
-              disabled={loading}
+              onClick={resetStreak}
+              className="px-6 py-3 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
             >
-              {loading ? 'Updating...' : 'Reset Streak'}
+              Reset Streak
             </button>
           </div>
-
           <div className="text-center text-purple-700 text-lg font-medium">
             "Every streak starts with one step. Keep going, you're amazing!"
           </div>
@@ -168,18 +195,21 @@ function Dashboard() {
 
       {/* Calendar Section */}
       <div className="bg-white p-8 rounded-lg shadow-sm mt-12 mx-8 lg:mx-16">
-        <h3 className="text-2xl font-semibold text-gray-800 mb-8">Progress Tracker</h3>
+        <h3 className="text-2xl font-semibold text-gray-800 mb-8">
+          Progress Tracker
+        </h3>
         <div className="flex items-center justify-around space-x-6 overflow-x-auto">
           {history.slice(-7).map((day, index) => (
-            <div
-              key={index}
-              className="flex flex-col items-center"
-            >
+            <div key={index} className="flex flex-col items-center">
               <span className="text-gray-700 text-lg">{day.date}</span>
               <div
-                className={`w-8 h-8 flex items-center justify-center rounded-full ${day.success ? 'bg-green-500' : 'bg-gray-300'}`}
+                className={`w-8 h-8 flex items-center justify-center rounded-full ${
+                  day.success ? "bg-green-500" : "bg-gray-300"
+                }`}
               >
-                {day.success && <div className="w-4 h-4 bg-white rounded-full"></div>}
+                {day.success && (
+                  <div className="w-4 h-4 bg-white rounded-full"></div>
+                )}
               </div>
             </div>
           ))}
@@ -188,17 +218,23 @@ function Dashboard() {
           onClick={() => setShowCalendar(!showCalendar)}
           className="mt-8 px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors w-full"
         >
-          {showCalendar ? 'Hide Calendar' : 'View Full Calendar'}
+          {showCalendar ? "Hide Calendar" : "View Full Calendar"}
         </button>
         {showCalendar && (
           <div className="mt-8 bg-gray-50 p-6 rounded-lg shadow-md">
-            <h4 className="text-lg font-semibold text-gray-800 mb-4">Full Calendar</h4>
+            <h4 className="text-lg font-semibold text-gray-800 mb-4">
+              Full Calendar
+            </h4>
             <Calendar
-              onActiveStartDateChange={({ activeStartDate }) => onMonthChange(activeStartDate)}
+              onActiveStartDateChange={({ activeStartDate }) =>
+                onMonthChange(activeStartDate)
+              }
               value={currentMonth}
               tileDisabled={({ date }) => isFutureDate(date)}
               tileContent={({ date }) => {
-                const day = history.find((d) => d.date === date.toISOString().split('T')[0]);
+                const day = history.find(
+                  (d) => d.date === date.toISOString().split("T")[0]
+                );
                 return day?.success ? (
                   <div className="w-3 h-3 bg-green-500 rounded-full mx-auto mt-1"></div>
                 ) : null;
@@ -206,8 +242,10 @@ function Dashboard() {
               maxDetail="month"
               minDetail="month"
               showNavigation={true}
-              navigationLabel={({ date, label }) => (
-                <span className="text-lg font-medium text-gray-800">{label}</span>
+              navigationLabel={({ label }) => (
+                <span className="text-lg font-medium text-gray-800">
+                  {label}
+                </span>
               )}
               className="border rounded-lg p-4"
               prev2Label={null}
